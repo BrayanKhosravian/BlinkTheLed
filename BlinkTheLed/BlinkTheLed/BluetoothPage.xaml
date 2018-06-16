@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BlinkTheLed.BluetoothPage">
+    <ContentPage.Content>
+        <StackLayout>
+
+
+
+            <Label Text="Select the Bluethooth Options!"
+                VerticalOptions="Center" 
+                HorizontalOptions="CenterAndExpand" />
+            
+            <Button Clicked="Bluetooth_TurnOn" Text="Bluetooth - Turn On"/>
+            <Button Clicked="Bluetooth_TurnOff" Text="Bluetooth - Turn Off"/>
+            <Button Clicked="Bluetooth_GetVisible" Text="Bluetooth _ Get Visible"/>
+            <Button Clicked="Bluetooth_Scan" Text="Bluetooth - Scan"/>
+            <Button Clicked="Blutooth_ShowPaired" Text="Bluetooth - Show Paired"/>
+            <Button Clicked="Bluetooth_Connect" Text="Bluetooth - Connect"/>
+
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

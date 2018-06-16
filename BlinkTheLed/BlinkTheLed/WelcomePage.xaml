@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BlinkTheLed.WelcomePage">
+    <StackLayout>
+        <!-- Place new controls here -->
+        <Label Text="Blink the led test with Xamarin.Forms!" 
+               HorizontalOptions="Center"
+               VerticalOptions="CenterAndExpand" />
+
+        <Button Clicked="Bluetooth_Options" Text="Bluetooth-Options"/>
+
+        <Button Clicked="Button_One" Text="Commmand One"/>
+        <Button Clicked="Button_Two" Text="Command Two"/>
+        <Button Clicked="Button_Three" Text="COmmand Three"/>
+
+    </StackLayout>
+</ContentPage>
