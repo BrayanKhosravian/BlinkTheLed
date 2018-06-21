@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Acr.Reflection;
 using Android.Bluetooth;
 using Android.Bluetooth.LE;
+using Android.Content;
 //using ImageIO;
 using Plugin.BluetoothLE;
 using Xamarin.Forms;
@@ -18,50 +19,39 @@ namespace BlinkTheLed
 	public partial class BluetoothPage : ContentPage
 	{
 
-	    private BluetoothAdapter _manager = BluetoothAdapter.DefaultAdapter;
-
+	    private readonly BluetoothAdapter _manager;
         
 
         public BluetoothPage ()
 		{
 			InitializeComponent ();
-		   // _manager = (BluetoothManager) Android.App.Application.Context.GetSystemService(Android.Content.Context.BluetoothService);
-		    // _manager = BluetoothAdapter.DefaultAdapter;
+		 
+            this._manager = BluetoothAdapter.DefaultAdapter;
+
+		    if (this._manager != null)
+		    {
+                // Device does not support bluetooth
+		    }
 		}
 
 
 	    private void Bluetooth_TurnOn(object sender, EventArgs e)
 	    {
 	        if (!_manager.IsEnabled) _manager.Enable();
-            
-	    }
+        }
+
 
 	    private void Bluetooth_TurnOff(object sender, EventArgs e)
 	    {
 	        if (_manager.IsEnabled) _manager.Disable();
 	    }
 
-	    private void Bluetooth_GetVisible(object sender, EventArgs e)
+	    private async void Blutooth_ShowPaired(object sender, EventArgs e)
 	    {
-	        if (_manager.IsEnabled)
-	        {
-	           
-	           
-	        }
-	    }
+	        ICollection<BluetoothDevice> listOfPaireDevices = _manager.BondedDevices;
 
-	    private void Bluetooth_Scan(object sender, EventArgs e)
-	    {
-	        if (_manager.IsEnabled && !_manager.IsDiscovering)
-	        {
-	            _manager.StartDiscovery();
 
-	        }
-        }
-
-	    private void Blutooth_ShowPaired(object sender, EventArgs e)
-	    {
-	        
+	        await Navigation.PushAsync(new ListViewPage1());
 	    }
 
 	    private void Bluetooth_Connect(object sender, EventArgs e)

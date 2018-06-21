@@ -13,8 +13,6 @@
             
             <Button Clicked="Bluetooth_TurnOn" Text="Bluetooth - Turn On"/>
             <Button Clicked="Bluetooth_TurnOff" Text="Bluetooth - Turn Off"/>
-            <Button Clicked="Bluetooth_GetVisible" Text="Bluetooth _ Get Visible"/>
-            <Button Clicked="Bluetooth_Scan" Text="Bluetooth - Scan"/>
             <Button Clicked="Blutooth_ShowPaired" Text="Bluetooth - Show Paired"/>
             <Button Clicked="Bluetooth_Connect" Text="Bluetooth - Connect"/>
 
