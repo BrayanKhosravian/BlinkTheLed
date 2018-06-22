@@ -6,8 +6,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Acr.Reflection;
 using Android.Bluetooth;
+using Android.Provider;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static Android.Provider.ContactsContract;
 
 namespace BlinkTheLed
 {
@@ -29,23 +31,16 @@ namespace BlinkTheLed
 
             
             int i = 0;
-
             string[] _listDevice = new string[_bondedDevices.Count];
-            // List<DeviceInformation> list = new List<DeviceInformation>();
-            // DeviceInformation deviceInformation = new DeviceInformation();
 
             foreach (var device in _bondedDevices)
             {
                 _listDevice[i] = device.Name  + "   -   " + device.Address;
-                
-             // deviceInformation._deviceName = item.Name;
-             // deviceInformation._deviceMAC = item.Address;
-
-            //  list.Add(deviceInformation);
                 i++;
+
+
             }
 
-          //  Items = new ObservableCollection<DeviceInformation>(list);
             Items = new ObservableCollection<string>(_listDevice);
 			
 			MyListView.ItemsSource = Items;
@@ -54,13 +49,14 @@ namespace BlinkTheLed
 
         private class DeviceInformation
         {
-            public string _deviceName { get; set; }
-            public string _deviceMAC { get; set; }
+            public string Name { get; set; }
+            public string Mac { get; set; }
         }
         
 
         private async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
         {
+
             if (e.Item == null)
                 return;
 

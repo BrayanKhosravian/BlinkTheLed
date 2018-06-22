@@ -48,10 +48,10 @@ namespace BlinkTheLed
 
 	    private async void Blutooth_ShowPaired(object sender, EventArgs e)
 	    {
-	        ICollection<BluetoothDevice> listOfPaireDevices = _manager.BondedDevices;
+	       // ICollection<BluetoothDevice> listOfPaireDevices = _manager.BondedDevices;
 
 
-	        await Navigation.PushAsync(new ListViewPage1());
+	        await Navigation.PushAsync(new Page1());
 	    }
 
 	    private void Bluetooth_Connect(object sender, EventArgs e)

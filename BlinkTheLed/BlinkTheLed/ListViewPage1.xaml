@@ -11,7 +11,7 @@
         <!--Built in Cells-->
         <ListView.ItemTemplate>
             <DataTemplate>
-                <TextCell Text="{Binding .}" />
+                <TextCell Text="{Binding Name}" Detail="{Binding Mac}" />
             </DataTemplate>
         </ListView.ItemTemplate>
 
