@@ -11,10 +11,11 @@
                 VerticalOptions="Center" 
                 HorizontalOptions="CenterAndExpand" />
             
-            <Button Clicked="Bluetooth_TurnOn" Text="Bluetooth - Turn On"/>
-            <Button Clicked="Bluetooth_TurnOff" Text="Bluetooth - Turn Off"/>
-            <Button Clicked="Blutooth_ShowPaired" Text="Bluetooth - Show Paired"/>
-            <Button Clicked="Bluetooth_Connect" Text="Bluetooth - Connect"/>
+            <Button Clicked="Button_BT_TurnOn" Text="Bluetooth - Turn On"/>
+            <Button Clicked="Button_BT_TurnOff" Text="Bluetooth - Turn Off"/>
+            <Button Clicked="Button_BT_ShowPaired" Text="Bluetooth - Show Paired"/>
+            <Button Clicked="Button_BT_Discover" Text="Bluetooth - Discover"/>
+            <Button Clicked="Button_BT_Connect" Text="Bluetooth - Connect"/>
 
         </StackLayout>
         

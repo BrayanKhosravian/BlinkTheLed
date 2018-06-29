@@ -7,6 +7,7 @@
         <Label Text="Blink the led test with Xamarin.Forms!" 
                HorizontalOptions="Center"
                VerticalOptions="CenterAndExpand" />
+        
 
         <Button Clicked="Bluetooth_Options" Text="Bluetooth-Options"/>
 

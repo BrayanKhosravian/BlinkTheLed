@@ -9,10 +9,10 @@ namespace BlinkTheLed.Models
         public string Name { get; set; }
         public string Mac { get; set; }
 
-        public Contact(string _name, string _mac)
+        public Contact(string name, string mac)
         {
-            Name = _name;
-            Mac = _mac;
+            Name = name;
+            Mac = mac;
         }
     }
 }

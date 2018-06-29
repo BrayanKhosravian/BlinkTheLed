@@ -35,26 +35,32 @@ namespace BlinkTheLed
 		}
 
 
-	    private void Bluetooth_TurnOn(object sender, EventArgs e)
+	    private void Button_BT_TurnOn(object sender, EventArgs e)
 	    {
 	        if (!_manager.IsEnabled) _manager.Enable();
         }
 
 
-	    private void Bluetooth_TurnOff(object sender, EventArgs e)
+	    private void Button_BT_TurnOff(object sender, EventArgs e)
 	    {
 	        if (_manager.IsEnabled) _manager.Disable();
 	    }
 
-	    private async void Blutooth_ShowPaired(object sender, EventArgs e)
+	    private async void Button_BT_ShowPaired(object sender, EventArgs e)
 	    {
 	       // ICollection<BluetoothDevice> listOfPaireDevices = _manager.BondedDevices;
 
 
-	        await Navigation.PushAsync(new Page1());
+	        // await Navigation.PushAsync(new Page1());
+	        await Navigation.PushAsync(new ShowPairedListView());
 	    }
 
-	    private void Bluetooth_Connect(object sender, EventArgs e)
+	    private void Button_BT_Connect(object sender, EventArgs e)
+	    {
+	        
+	    }
+
+	    private void Button_BT_Discover(object sender, EventArgs e)
 	    {
 	        
 	    }
