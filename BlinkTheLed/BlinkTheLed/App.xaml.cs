@@ -18,17 +18,21 @@ namespace BlinkTheLed
 {
 	public partial class App : Application
 	{
+	    public readonly CustomBluetoothManager g_CustomBluetoothManager;
 
 		public App ()
 		{
 			InitializeComponent();
 
 			MainPage = new NavigationPage(new WelcomePage());
+
+            g_CustomBluetoothManager = new CustomBluetoothManager(MainPage);
 		}
 
 		protected override void OnStart ()
 		{
 			// Handle when your app starts
+
 		}
 
 		protected override void OnSleep ()

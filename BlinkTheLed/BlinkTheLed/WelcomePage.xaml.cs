@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Android.Bluetooth;
+using Android.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,14 +15,21 @@ namespace BlinkTheLed
 	public partial class WelcomePage : ContentPage
 	{
 
-		private BluetoothSocket _btSocket = null;
+		//  private BluetoothSocket _btSocket = ShowPairedListView._socket;
 
-	    private Stream _outStream;
+		//  private CustomBluetoothManager _customBluetoothManager; 
+
+		// private Stream _outStream;
+
+		private readonly CustomBluetoothManager _customBluetoothManager;
+
 
 		public WelcomePage ()
 		{
 			InitializeComponent ();
-		    _btSocket = ShowPairedListView._socket;
+
+		    _customBluetoothManager = (Application.Current as App).g_CustomBluetoothManager;
+
 		}
 
 		private async void Bluetooth_Options(object sender, System.EventArgs e)
@@ -32,63 +40,16 @@ namespace BlinkTheLed
 
 		private void Button_One(object sender, EventArgs e)
 		{
-			try
-			{
-			   _outStream = ShowPairedListView._socket.OutputStream;
-			}
-			catch (Exception exception)
-			{
-				Console.WriteLine(exception);
-				throw;
-			}
+			_customBluetoothManager.DoSendStream("1");
 
-			var msg1 = new Java.Lang.String("1");
-			byte[] msgBuffer = msg1.GetBytes();
-
-		    byte[] i = new Java.Lang.String("1").GetBytes();
-
-
-			try
-			{
-		        _outStream.Write(i, 0, i.Length);
-			   
-			}
-			catch (Exception)
-			{
-
-				throw;
-			}
+			
 		}
 
 		private void Button_Two(object sender, EventArgs e)
 		{
-		    try
-		    {
-		        _outStream = ShowPairedListView._socket.OutputStream;
-		    }
-		    catch (Exception exception)
-		    {
-		        Console.WriteLine(exception);
-		        throw;
-		    }
+			_customBluetoothManager.DoSendStream("0");
 
-		    var msg1 = new Java.Lang.String("1");
-		    byte[] msgBuffer = msg1.GetBytes();
-
-		    byte[] i = new Java.Lang.String("1").GetBytes();
-
-
-		    try
-		    {
-		        _outStream.Write(i, 0, i.Length);
-
-		    }
-		    catch (Exception)
-		    {
-
-		        throw;
-		    }
-        }
+		}
 
 		private void Button_Three(object sender, EventArgs e)
 		{

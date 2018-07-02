@@ -18,81 +18,58 @@ using Console = System.Console;
 
 namespace BlinkTheLed
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ShowPairedListView : ContentPage
-	{
-		private ObservableCollection<Contact> Items { get; set; }
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ShowPairedListView : ContentPage
+    {
+        private ObservableCollection<Contact> Items { get; set; }
 
-		private static BluetoothAdapter _manager { get; set; }
-	    private ICollection<BluetoothDevice> _bondedDevices { get; }
-		public static BluetoothSocket _socket { get; set; }
+        // private static BluetoothAdapter _manager { get; set; }
+        // private ICollection<BluetoothDevice> _bondedDevices { get; }
+        // public static BluetoothSocket _socket { get; set; }
+
+        private readonly CustomBluetoothManager _customBluetoothManager;
 
 
-		public ShowPairedListView()
-		{
-			InitializeComponent();
-			Items = new ObservableCollection<Contact>();
+        public ShowPairedListView()
+        {
+            InitializeComponent();
+            _customBluetoothManager = (Application.Current as App)?.g_CustomBluetoothManager;
 
-		    _manager = BluetoothAdapter.DefaultAdapter;
-		    _bondedDevices = _manager.BondedDevices;
+            Items = new ObservableCollection<Contact>();
 
-            foreach (BluetoothDevice device in _bondedDevices)
-			{
-				Items.Add(new Contact(device.Name, device.Address));
-			}
-			
-			MyListView.ItemsSource = Items;
-		}
+            //_manager = BluetoothAdapter.DefaultAdapter;
+            //_bondedDevices = _manager.BondedDevices;
 
-		private async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
-		{
+            foreach (BluetoothDevice device in _customBluetoothManager.GetListBondedDevices())
+            {
+                Items.Add(new Contact(device.Name, device.Address));
+            }
 
-			if (e.Item == null)
-				return;
+            MyListView.ItemsSource = Items;
+        }
 
-			var contact = e.Item as Contact;
+        private async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
 
-			if (contact != null)
-			{
+            if (e.Item == null)
+                return;
 
-			    BluetoothDevice device = _manager.GetRemoteDevice(contact.Mac);
-				_manager.CancelDiscovery(); 
+            var contact = e.Item as Contact;
 
-				try
-				{
-					_socket = device.CreateInsecureRfcommSocketToServiceRecord(UUID.FromString("00001101-0000-1000-8000-00805F9B34FB"));
-					_socket.Connect();
-				}
-				catch (Exception e1)
-				{
-					Console.WriteLine(e1);
-					// throw;
-					try
-					{
-						_socket.Close();
-					}
-					catch (Exception e2)
-					{
-						Console.WriteLine(e2);
-						// throw;
-					}
-				}
-				
-			}
+            if (contact != null)
+            {
+                UUID uuid = UUID.FromString("00001101-0000-1000-8000-00805F9B34FB");
 
-			if (_socket.IsConnected)
-			{
-				await DisplayAlert("Item Tapped", $"Name: {contact.Name}   +   Address: {contact.Mac}", "OK");
-			}
-			else
-			{
-				await DisplayAlert("Status", "Not connected", "OK");
-			}
+                BluetoothDevice device = _customBluetoothManager.GetDevice(contact.Mac);
+                _customBluetoothManager.DoCancelDiscovery();
 
-			//Deselect Item
-			((ListView)sender).SelectedItem = null;
+                await _customBluetoothManager.DoConnectionInsecure(device, uuid);
 
-		}
+                //Deselect Item
+                ((ListView) sender).SelectedItem = null;
 
-	}
+            }
+
+        }
+    }
 }

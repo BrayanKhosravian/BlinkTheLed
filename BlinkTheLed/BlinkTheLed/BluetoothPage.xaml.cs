@@ -19,50 +19,52 @@ namespace BlinkTheLed
 	public partial class BluetoothPage : ContentPage
 	{
 
-	    private readonly BluetoothAdapter _manager;
-        
+		private readonly BluetoothAdapter _manager;
+		
 
-        public BluetoothPage ()
+		public BluetoothPage ()
 		{
 			InitializeComponent ();
 		 
-            this._manager = BluetoothAdapter.DefaultAdapter;
+			_manager = BluetoothAdapter.DefaultAdapter;
 
-		    if (this._manager != null)
-		    {
-                // Device does not support bluetooth
-		    }
+			if (_manager != null)
+			{
+				// Device does not support bluetooth
+				DisplayAlert("Error", "Device does not support Bluetooth", "OK");
+				//Environment.Exit(1);
+			}
 		}
 
 
-	    private void Button_BT_TurnOn(object sender, EventArgs e)
-	    {
-	        if (!_manager.IsEnabled) _manager.Enable();
-        }
+		private void Button_BT_TurnOn(object sender, EventArgs e)
+		{
+			if (!_manager.IsEnabled) _manager.Enable();
+		}
 
 
-	    private void Button_BT_TurnOff(object sender, EventArgs e)
-	    {
-	        if (_manager.IsEnabled) _manager.Disable();
-	    }
+		private void Button_BT_TurnOff(object sender, EventArgs e)
+		{
+			if (_manager.IsEnabled) _manager.Disable();
+		}
 
-	    private async void Button_BT_ShowPaired(object sender, EventArgs e)
-	    {
-	       // ICollection<BluetoothDevice> listOfPaireDevices = _manager.BondedDevices;
+		private async void Button_BT_ShowPaired(object sender, EventArgs e)
+		{
+		   // ICollection<BluetoothDevice> listOfPaireDevices = _manager.BondedDevices;
 
 
-	        // await Navigation.PushAsync(new Page1());
-	        await Navigation.PushAsync(new ShowPairedListView());
-	    }
+			// await Navigation.PushAsync(new Page1());
+			await Navigation.PushAsync(new ShowPairedListView());
+		}
 
-	    private void Button_BT_Connect(object sender, EventArgs e)
-	    {
-	        
-	    }
+		private void Button_BT_Connect(object sender, EventArgs e)
+		{
+			
+		}
 
-	    private void Button_BT_Discover(object sender, EventArgs e)
-	    {
-	        
-	    }
+		private void Button_BT_Discover(object sender, EventArgs e)
+		{
+			
+		}
 	}
 }

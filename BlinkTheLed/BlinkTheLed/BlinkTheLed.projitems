@@ -19,10 +19,6 @@
       <DependentUpon>BluetoothPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)BT_Discover.xaml.cs">
-      <DependentUpon>BT_Discover.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)CustomBluetoothManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShowPairedListView.xaml.cs">
       <DependentUpon>ShowPairedListView.xaml</DependentUpon>
@@ -48,12 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)ShowPairedListView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)BT_Discover.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
